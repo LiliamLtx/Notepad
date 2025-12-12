@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDOException;
+
 
 use function Laravel\Prompts\error;
 
@@ -34,15 +36,50 @@ class AuthController extends Controller
       $username = $request->input('text_username');
       $password = $request->input('text_password');
 
-      try {
+      //check user com model
+      $user = User::where('username', $username)
+         ->where('deleted_at', NULL)
+         ->first();
+      //check username
+      if (!$user) {
+         return redirect()
+            ->back()
+            ->withInput()
+            ->with('login_error', 'Incorrect username or password');
+      }
+      //check password
+      if(!password_verify($password, $user->password)){
+         return redirect()
+            ->back()
+            ->withInput()
+            ->with('login_error', 'Incorrect username or password');
+      } 
+      $user->last_login = date('Y-m-d H:i:s');
+      $user->save();
+
+      //login user
+      session([
+         'user' =>[
+            'id' => $user->id,
+            'usernamer' => $user->username
+         ]
+      ]);
+
+      echo 'Login com sucesso';
+
+
+   /* // testar conexão com o banco de dados
+    try {
          DB::connection()->getPdo();
          echo "Connection is OK";
       } catch (\Throwable $e) {
           echo "Connection faild: " . $e->getMessage();
-      }
+      }*/
+
 }
    public function logout(){
-    echo 'logout';
+    session()->forget('user');
+    return redirect()->to('/login');
    }
 }
 
