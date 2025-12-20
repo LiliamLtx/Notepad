@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Route;
 //auth route
 Route::middleware([CheckIsNotLogged::class])->group(function(){
     Route::get('/login', [AuthController::class, 'login']);
-    Route::post('/loginSubmit', [AuthController::class, 'loginSubmit']);
+    Route::post('/loginSubmit', [AuthController::class, 'loginSubmit'])->name('loginSubmit');
 });
 
 //app route
 Route::middleware([CheckIsLogged::class])->group(function(){
     //user logado
-    Route::get('/logout', [AuthController::class, 'logout']);
-    route::get('/', [MainController::class, 'index']);
-    Route::get('/newNote',[MainController::class, 'newNote']);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/', [MainController::class, 'index'])->name('home');
+    Route::get('/newNote',[MainController::class, 'newNote'])->name('new');
 });
 
 

@@ -24,9 +24,9 @@ class AuthController extends Controller
             'text_password' => ['required', 'min:6', 'max:16']
          ],
          [
-            'text_username.required'=> 'O username é obrigatoriooo bb',
+            'text_username.required'=> 'O username é obrigatorio',
             'text_username.email' => 'Digite um email valido',
-            'text_password.required' => 'digite a senha bb',
+            'text_password.required' => 'Digite a senha',
             'text_password.min' => 'Senha pelo menos 6',
             'text_password.max' => 'Senha maximo 16'
          ]
@@ -45,14 +45,14 @@ class AuthController extends Controller
          return redirect()
             ->back()
             ->withInput()
-            ->with('login_error', 'Incorrect username or password');
+            ->with('login_error', 'Usuario ou senha incorretos');
       }
       //check password
       if(!password_verify($password, $user->password)){
          return redirect()
             ->back()
             ->withInput()
-            ->with('login_error', 'Incorrect username or password');
+            ->with('login_error', 'Usuario ou senha incorretos');
       } 
       $user->last_login = date('Y-m-d H:i:s');
       $user->save();
@@ -65,7 +65,8 @@ class AuthController extends Controller
          ]
       ]);
 
-      echo 'Login com sucesso';
+      //redirect to home
+      return redirect()->to('/');
 
 
    /* // testar conexão com o banco de dados
