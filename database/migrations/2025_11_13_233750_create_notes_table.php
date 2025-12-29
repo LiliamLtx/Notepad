@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->integer('user_id')->nullable();
-            $table->integer('title')->nullable();
-            $table->integer('text')->nullable();
+            $table->string('title')->nullable();
+            $table->string('text')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

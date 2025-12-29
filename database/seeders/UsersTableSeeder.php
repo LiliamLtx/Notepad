@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->truncate();
+
         DB::table('users')->insert([
             [
                 'username' => 'user1@gmail.com',
