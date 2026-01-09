@@ -1,2 +1,2 @@
 # Notepad
-Projeto criado para reforçar conhecimentos básicos em Laravel
+Bloco de notas em Laravel com middleware para realizar testes de software em PHPUnit e Cypress.
