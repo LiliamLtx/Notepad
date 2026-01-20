@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use PDOException;
 
 
@@ -61,7 +62,7 @@ class AuthController extends Controller
       session([
          'user' =>[
             'id' => $user->id,
-            'usernamer' => $user->username
+            'username' => $user->username
          ]
       ]);
 
@@ -81,6 +82,51 @@ class AuthController extends Controller
    public function logout(){
     session()->forget('user');
     return redirect()->to('/login');
+   }
+
+   public function cadastro(){
+      return view('cadastro');
+   }
+
+   public function cadastroSubmit(Request $request){
+         $request->validate(
+         [
+            'text_username' => ['required','email', 'unique:users,username'],
+            'text_password' => ['required', 'min:6', 'max:16']
+         ],
+         [
+            'text_username.unique' => 'Este usuário já está cadastrado',
+            'text_username.required'=> 'O username é obrigatorio',
+            'text_username.email' => 'Digite um email valido',
+            'text_password.required' => 'Digite a senha',
+            'text_password.min' => 'Senha pelo menos 6',
+            'text_password.max' => 'Senha maximo 16'
+         ]
+      );
+
+      // Check user exists
+      $username = $request->input('text_username');
+      $userExists = User::where('username', $username)->exists();
+
+      if ($userExists) {
+         return redirect()
+            ->back()
+            ->withInput()
+            ->with('cadastro_error', 'Este e-mail já está cadastrado no sistema.');
+      }
+
+      //creating new user
+      $user = new User();
+      $user->username = $request->input('text_username');
+
+      $user->password = Hash::make($request->input('text_password'));
+
+      $user->save();
+
+      //redirect to home
+      return redirect()->to('/login')->with('success', 'Conta criada com sucesso!');
+
+
    }
 }
 
