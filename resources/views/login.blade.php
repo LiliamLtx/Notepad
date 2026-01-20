@@ -13,10 +13,10 @@
                 <!-- form -->
                 <div class="row justify-content-center">
                     <div class="col-md-10 col-12">
-                        <form action="{{ url('/loginSubmit') }}" method="post">
+                        <form action="{{ route('loginSubmit') }}" method="post">
                             @csrf
                             <div class="mb-3">
-                                <label for="text_username" class="form-label">Username</label>
+                                <label for="text_username" class="form-label">Email</label>
                                 <input type="text" class="form-control bg-dark text-info" name="text_username" value="{{ old('text_username') }}">
                                 @error('text_username')
                                 <div class="text-danger"> {{$message }}</div>
@@ -33,6 +33,10 @@
                                 <button type="submit" class="btn btn-secondary w-100">LOGIN</button>
                             </div>
                         </form>
+                        <div class="text-center p-3">
+                            Não tem uma conta? 
+                            <a href="{{ route('cadastro') }}"><button class="btn btn-secondary w-20">Cadastre-se</button></a>
+                        </div>
                         @if(session('login_error'))
                         <div class="alert alert-danger text-center">
                             {{ session('login_error') }}
