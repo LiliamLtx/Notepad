@@ -4,6 +4,7 @@
                         <div class="row">
                             <div class="col">
                                 <h4 class="text-info">{{ $note['title'] }}</h4>
+                                
                                 @if($note['created_at'] != $note['updated_at'])
                                 <small class="text-secondary"><span class="opacity-75 me-2"></span><strong>{{ date('F j, Y, g:i a', strtotime($note['updated_at'])) }}</strong></small>
                                 @else

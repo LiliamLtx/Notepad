@@ -45,7 +45,11 @@ class NoteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $note = Note::where('id', $id)
+        ->where('user_id', auth()->id())
+        ->firstOrFail();
+
+        return response()->json($note);
     }
 
     /**

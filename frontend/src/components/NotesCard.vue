@@ -6,6 +6,7 @@
           <div class="col">
             <h4 class="text-info">{{ note.title }}</h4>
 
+            <!--editar para mostrar ultima edição-->
             <small class="text-secondary">
               <strong>{{ formattedDate }}</strong>
             </small>
@@ -67,10 +68,16 @@ const formattedDate = computed(() => {
 })
 
 function onEdit() {
-  router.push(`/notes/edit/${props.note.id}`)
+  router.push({
+    name: 'edit',
+    params: { id: props.note.id }
+  })
 }
 
 function onDelete() {
-  emit('delete', props.note.id)
+  router.push({
+    name: 'delete',
+    params: { id: props.note.id }
+  })
 }
 </script>
