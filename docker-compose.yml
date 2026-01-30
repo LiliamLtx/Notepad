@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  backend:
+    env_file:
+      - ./backend/.env
+    build: ./backend
+    container_name: notepad-backend
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  frontend:
+    build: ./frontend
+    container_name: notepad-frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host
+
+  postgres:
+    image: postgres:18
+    container_name: laravel_postgres
+    environment:
+      POSTGRES_DB: notepad
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
