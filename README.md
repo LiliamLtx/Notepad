@@ -55,13 +55,21 @@ composer install
 php artisan key:generate
 php artisan migrate
 ```
-Para rodar o servidor: php artisan serve
+Para rodar o servidor: 
+```Bash
+php artisan serve
+```
 
 ## 3. Fazendo o frontend
 ``` Bash
 cd frontend
 npm install
 ```
-Para rodar o servidor: npm run dev
+Para rodar o servidor:
+```Bash
+npm run dev
+```
 
 ## 4. Subindo o banco de dados com Docker
+```bash
+docker compose up -d
