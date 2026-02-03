@@ -21,12 +21,3 @@ const showTopBar = computed(() => {
 
 </script>
 
-<style>
-/* Estilos globais para o seu projeto */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #121212; /* O fundo escuro que você usa */
-  color: white;
-}
-</style>

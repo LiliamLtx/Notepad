@@ -1,38 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import api from '@/services/api'
-
-const router = useRouter()
-
-const text_username = ref('')
-const text_password = ref('')
-const error = ref(null)
-const loading = ref(false)
-
-const cadastrar = async () => {
-  error.value = null
-  loading.value = true
-
-  try {
-    const response = await api.post('/cadastro', {
-      text_username: text_username.value,
-      text_password: text_password.value
-    })
-
-    // salva token
-    localStorage.setItem('token', response.data.token)
-
-    // redireciona
-    router.push('/login')
-  } catch (err) {
-    error.value = err.response?.data?.message || 'Erro ao cadastrar'
-  } finally {
-    loading.value = false
-  }
-}
-</script>
-
 <template>
   <div class="container mt-5">
     <div class="row justify-content-center">
@@ -44,8 +9,18 @@ const cadastrar = async () => {
             <img src="/assets/images/logo.png" alt="Notes logo" class="img-fluid" style="max-height: 80px" />
           </div>
 
+          <div class="text-center mb-4">
+          <h1> Cadastro </h1>
+          </div>
           <!-- FORM -->
           <form @submit.prevent="cadastrar">
+            <!--  Nome -->
+            <div class="mb-3">
+              <label class="form-label">Nome</label>
+              <input type="text" name="text_name" class="form-control bg-dark text-info" v-model="text_name"
+                required />
+            </div>
+
             <!-- Email -->
             <div class="mb-3">
               <label class="form-label">Email</label>
@@ -75,3 +50,53 @@ const cadastrar = async () => {
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import api from '@/services/api'
+
+const router = useRouter()
+
+
+const text_name = ref('')
+const text_username = ref('')
+const text_password = ref('')
+const error = ref(null)
+const loading = ref(false)
+
+const cadastrar = async () => {
+  error.value = null
+  loading.value = true
+
+  try {
+    const response = await api.post('/cadastro', {
+      text_name: text_name.value,
+      text_username: text_username.value,
+      text_password: text_password.value
+    })
+
+    // salva token
+    router.push('/login')
+
+  } catch (err) {
+    const statusCode = err.response?.status;
+    const data = err.response?.data;
+
+    if (statusCode === 422) {
+        const validationErrors = data.errors;
+        if (validationErrors) {
+            // Transforma o objeto de erros em uma string legível
+            error.value = Object.values(validationErrors).flat().join(' ');
+        } else {
+            error.value = data.message;
+        }
+    }
+     else {
+        error.value = data?.message || 'Erro ao processar cadastro';
+    }
+  } finally {
+    loading.value = false
+  }
+}
+</script>

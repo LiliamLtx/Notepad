@@ -22,8 +22,8 @@ class AuthController extends Controller
             'text_username.required' => 'O username é obrigatorio',
             'text_username.email' => 'Digite um email valido',
             'text_password.required' => 'Digite a senha',
-            'text_password.min' => 'Senha pelo menos 6',
-            'text_password.max' => 'Senha maximo 16'
+            'text_password.min' => 'A senha deve ter pelo menos 6 caracteres',
+            'text_password.max' => 'A senha deve ter maximo 16 caracteres'
          ]
       );
 
@@ -65,6 +65,7 @@ public function logout(Request $request)
    {
       $credentials = $request->validate(
          [
+            'text_name' => ['required', 'min:3', 'max:150'],
             'text_username' => ['required', 'email', 'unique:users,username'],
             'text_password' => ['required', 'min:6', 'max:16']
          ],
@@ -79,15 +80,14 @@ public function logout(Request $request)
       );
 
       $user = User::create([
+         'name' => $credentials['text_name'],
          'username' => $credentials['text_username'],
          'password' => Hash::make($credentials['text_password']),
       ]);
 
-      $token = $user->createToken('auth_token')->plainTextToken;
 
       return response()->json([
          'message' => 'Cadastro realizado com sucesso',
-         'token' => $token,
          'user' => $user
       ], 201);
    }

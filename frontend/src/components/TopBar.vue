@@ -1,4 +1,5 @@
 <template>
+  <nav data-test="TopBar">
   <div class="row mb-3 align-items-center">
     <!-- Logo -->
     <div class="col">
@@ -17,7 +18,7 @@
       <div class="d-flex justify-content-end align-items-center">
         <span class="me-3">
           <i class="fa-solid fa-user-circle fa-lg text-secondary me-3"></i>
-          {{ user?.username }}
+          {{ user?.name }}
         </span>
 
         <button @click="logout" class="btn btn-outline-secondary px-3">
@@ -28,6 +29,7 @@
     </div>
   </div>
   <hr />
+</nav>
 </template>
 
 <script setup>
@@ -43,7 +45,6 @@ onMounted(async () => {
     const { data } = await api.get('/me')
     user.value = data
   } catch (e) {
-    // NÃO faz logout aqui
     user.value = null
   }
 })
