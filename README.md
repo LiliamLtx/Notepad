@@ -1,25 +1,67 @@
 # 📝 Notepad Project
 
-Sistema de gerenciamento de notas desenvolvido com **Laravel** no backend e **Vue.js 3** no frontend. O projeto foca em uma arquitetura robusta, utilizando **Docker** para orquestração de serviços, autenticação em Sanctum e **Cypress** para garantir a qualidade através de testes de ponta a ponta (E2E).
+Sistema de gerenciamento de notas desenvolvido com **Laravel** no backend e **Vue.js 3** no frontend.  
+O projeto tem como objetivo aplicar boas práticas de desenvolvimento web, testes de software automatizados, autenticação segura e organização de código, simulando um cenário real de aplicação fullstack.
+
+O **Docker é utilizado exclusivamente para subir o banco de dados PostgreSQL**, enquanto o backend e o frontend rodam localmente.
+
+---
 
 ## 🛠️ Tecnologias e Ferramentas
 
-- **Backend:** PHP 8.2.11 com Laravel 12.
-- **Frontend:** Vue.js 3.
-- **Banco de Dados:** PostgreSQL.
-- **Containerização:** Docker & Docker Compose.
-- **Testes E2E:** Cypress para validação de fluxos de usuário.
-- **Design:** Interface responsiva com bootstrap.
+- **Backend:** PHP 8.2 + Laravel 12  
+- **Frontend:** Vue.js 3 (Vite)  
+- **Banco de Dados:** PostgreSQL  
+- **Containerização:** Docker & Docker Compose (apenas para o banco)  
+- **Autenticação:** Laravel Sanctum (API Token)  
+- **Testes:** Cypress (E2E)  
+- **UI:** Bootstrap  
 
-## 🚀 Como Clonar e Executar
+---
 
-### 1. Requisitos
-- [Docker](https://www.docker.com/get-started) e Docker Compose
+## 🚀 Funcionalidades
+
+- Cadastro e login de usuários
+- Autenticação via API com token
+- Criação, listagem, edição e exclusão de notas
+- Soft delete de notas
+- Proteção de rotas no frontend
+- Tratamento de sessão expirada (401)
+- Interface responsiva
+
+---
+
+## 📦 Pré-requisitos
+
+Antes de começar, você precisa ter instalado:
+
+- [PHP 8.2+](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
 - [Node.js](https://nodejs.org/)
+- [Docker](https://www.docker.com/) e Docker Compose
 
-### 2. Clonando o Repositório
-``` bash git clone [https://github.com/LiliamLtx/Notepad.git](https://github.com/LiliamLtx/Notepad.git) ```
-### 3. Executando o Frontend
- ```cd frontend```
- ```bash npm install ```
- ```npm run dev```
+---
+
+## 1. Clonando o Repositório
+
+``` Bash
+git clone https://github.com/LiliamLtx/Notepad.git
+cd Notepad
+```
+## 2. Fazendo o backend
+``` Bash
+cd backend
+composer install
+php artisan key:generate
+php artisan migrate
+```
+Para rodar o servidor: php artisan serve
+
+## 3. Fazendo o frontend
+``` Bash
+cd frontend
+npm install
+```
+Para rodar o servidor: npm run dev
+
+## 4. Subindo o banco de dados com Docker
