@@ -15,9 +15,11 @@ class NoteController extends Controller
     {
         $user = $request->user(); // vem do Sanctum
 
-        $notes = $user->notes()
+        $notes = $user
+            ->notes()
             ->whereNull('deleted_at')
-            ->get();
+            ->get()
+            ->toArray();
 
         return response()->json($notes);
     }
