@@ -13,18 +13,12 @@
           </div>
 
           <div class="col text-end">
-            <button
-              class="btn btn-outline-secondary btn-sm mx-1"
-              @click="onEdit"
-            >
+            <button class="btn btn-outline-secondary btn-sm mx-1" @click="onEdit">
               <i class="fa-regular fa-pen-to-square"></i>
             </button>
 
-            <button
-              class="btn btn-outline-danger btn-sm mx-1"
-              @click="onDelete"
-            >
-              <i class="fa-regular fa-trash-can"></i>
+            <button class="btn btn-outline-danger btn-sm mx-1" @click="$emit('delete', note)">
+              Delete
             </button>
           </div>
         </div>
@@ -74,10 +68,4 @@ function onEdit() {
   })
 }
 
-function onDelete() {
-  router.push({
-    name: 'delete',
-    params: { id: props.note.id }
-  })
-}
 </script>

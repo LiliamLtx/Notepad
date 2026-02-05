@@ -27,17 +27,12 @@
           </div>
 
           <!-- lista de notas -->
-          <NotesCard
-              v-for="note in notes"
-              :key="note.id"
-              :note="note"
-              @delete="deleteNote"
-            />
+          <NotesCard v-for="note in notes" :key="note.id" :note="note" @delete="openDeleteModal" />
         </div>
-
       </div>
     </div>
   </div>
+  <DeleteNoteModal v-if="noteToDelete" :note="noteToDelete" @close="noteToDelete = null" @deleted="handleDeleted" />
 </template>
 
 <script setup>
@@ -45,8 +40,19 @@ import { ref, onMounted, computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import api from '@/services/api'
 import NotesCard from '@/components/NotesCard.vue'
+import DeleteNoteModal from '@/components/DeleteNoteModal.vue' //
 
 const notes = ref([])
+const noteToDelete = ref(null)
+
+function openDeleteModal(note) {
+  noteToDelete.value = note
+}
+
+function handleDeleted(id) {
+  notes.value = notes.value.filter(n => n.id !== id)
+  noteToDelete.value = null
+}
 
 onMounted(async () => {
   const { data } = await api.get('/notes')
