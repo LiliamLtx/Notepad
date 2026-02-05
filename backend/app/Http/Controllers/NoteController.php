@@ -55,7 +55,7 @@ class NoteController extends Controller
         ->where('user_id', auth()->id())
         ->firstOrFail();
 
-        return response()->json($note);
+        return response()->json($note,200);
     }
 
     /**
@@ -72,7 +72,7 @@ class NoteController extends Controller
             'text' => $request->text,
         ]);
 
-        return response()->json($note);
+        return response()->json($note, 200);
     }
 
     /**
@@ -86,6 +86,6 @@ class NoteController extends Controller
 
         $note->delete();
 
-        return response()->json(['message' => 'Nota excluída']);
+        return response()->json(['message' => 'Nota excluída'],200);
     }
 }
