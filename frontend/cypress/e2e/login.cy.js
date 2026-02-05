@@ -4,7 +4,7 @@ describe('Login', () => {
         cy.visit('/login')
     })
 
-    it('Realizar login com sucesso', () =>{
+    it('Realizar login com sucesso', () => {
         //Act
         cy.get('[data-test="username"]').type('Testandoo@gmail.com')
         cy.get('[data-test="password"]').type('123456')
@@ -12,19 +12,20 @@ describe('Login', () => {
         //Assert
         cy.url().should('include', '/home')
         cy.get('[data-test="TopBar"]')
-        .should('be.visible')
-        .and('exist')
+            .should('be.visible')
+            .and('exist')
     })
 
-    it('Realizar login com credenciais erradas', () =>{
+    it('Realizar login com credenciais erradas', () => {
 
         //Act
         cy.get('[data-test="username"]').type('errando@gmail.com')
         cy.get('[data-test="password"]').type('errada')
         cy.get('[data-test="login"]').click()
         //Assert
-        cy.get('[data-test="error"]').should('contain.text', 'Credenciais inválidas')
-        
-        
-    } )
+        cy.get('[data-test="error"]')
+            .should('contain.text', 'Credenciais inválidas')
+
+
+    })
 })
