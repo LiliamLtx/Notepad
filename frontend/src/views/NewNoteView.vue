@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <div class="row justify-content-center">
+    <div data-test="newNote-container" class="row justify-content-center">
       <div class="col">
 
         <!-- TopBar -->
@@ -19,7 +19,7 @@
         </div>
 
         <!-- Form -->
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" data-test="newNote-form" >
           <div class="row mt-3">
             <div class="col">
 
@@ -27,6 +27,7 @@
                 <label class="form-label">Note Title</label>
                 <input
                   type="text"
+                  data-test="noteTitle"
                   class="form-control bg-primary text-white"
                   v-model="form.title"
                 />
@@ -39,6 +40,7 @@
                 <label class="form-label">Note Text</label>
                 <textarea
                   class="form-control bg-primary text-white"
+                  data-test="noteText"
                   rows="5"
                   v-model="form.text"
                 ></textarea>
@@ -60,7 +62,7 @@
                 <i class="fa-solid fa-ban me-2"></i>Cancel
               </button>
 
-              <button type="submit" class="btn btn-secondary px-5 ms-2">
+              <button type="submit" data-test="button-save" class="btn btn-secondary px-5 ms-2">
                 <i class="fa-regular fa-circle-check me-2"></i>Save
               </button>
             </div>
@@ -99,8 +101,8 @@ async function submit() {
       title: form.title,
       text: form.text
     })
-
     router.push('/home')
+    
   } catch (error) {
     if (error.response?.status === 422) {
       const apiErrors = error.response.data.errors

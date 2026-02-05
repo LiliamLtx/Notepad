@@ -10,7 +10,7 @@
               You have no notes available!
             </p>
 
-            <RouterLink to="/new" class="btn btn-secondary btn-lg p-3 px-5">
+            <RouterLink to="/new" id="new" data-test="button-new" class="btn btn-secondary btn-lg p-3 px-5">
               <i class="fa-regular fa-pen-to-square me-3"></i>
               Create Your First Note
             </RouterLink>
