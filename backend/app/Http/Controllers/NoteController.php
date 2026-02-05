@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Note;
+use App\Services\NoteService;
 
 class NoteController extends Controller
 {
@@ -27,17 +28,20 @@ class NoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, NoteService $service)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'text' => 'required|string',
         ]);
 
-        $note = $request->user()->notes()->create([
-            'title' => $request->title,
-            'text' => $request->text,
-        ]);
+        //service para criar notas com titulo unico
+        $note = $service->criarNota(
+            $request->user(),
+            $request->title,
+            $request->text
+        );
+        
 
         return response()->json($note, 201);
     }
