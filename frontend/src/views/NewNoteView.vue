@@ -31,7 +31,7 @@
                   class="form-control bg-primary text-white"
                   v-model="form.title"
                 />
-                <div v-if="errors.title" class="text-danger">
+                <div v-if="errors.title" data-test="title-danger" class="text-danger">
                   {{ errors.title }}
                 </div>
               </div>
@@ -44,7 +44,7 @@
                   rows="5"
                   v-model="form.text"
                 ></textarea>
-                <div v-if="errors.text" class="text-danger">
+                <div v-if="errors.text" data-test="text-danger"  class="text-danger">
                   {{ errors.text }}
                 </div>
               </div>
@@ -65,6 +65,7 @@
               <button type="submit" data-test="button-save" class="btn btn-secondary px-5 ms-2">
                 <i class="fa-regular fa-circle-check me-2"></i>Save
               </button>
+              
             </div>
           </div>
         </form>
@@ -86,7 +87,10 @@ const form = reactive({
   text: ''
 })
 
-const errors = reactive({})
+const errors = reactive({
+  title: null,
+  text: null
+})
 
 function goHome() {
   router.push('/home')
@@ -96,13 +100,27 @@ async function submit() {
   errors.title = null
   errors.text = null
 
+  let hasError = false
+
+  if (!form.title.trim()) {
+    errors.title = 'Título é obrigatório'
+    hasError = true
+  }
+
+  if (!form.text.trim()) {
+    errors.text = 'Texto é obrigatório'
+    hasError = true
+  }
+
+  if (hasError) return
+
   try {
     await api.post('/notes', {
       title: form.title,
       text: form.text
     })
     router.push('/home')
-    
+
   } catch (error) {
     if (error.response?.status === 422) {
       const apiErrors = error.response.data.errors

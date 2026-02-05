@@ -10,7 +10,7 @@
               You have no notes available!
             </p>
 
-            <RouterLink to="/new" id="new" data-test="button-new" class="btn btn-secondary btn-lg p-3 px-5">
+            <RouterLink to="/new" id="new" data-test="button-newfirst" class="btn btn-secondary btn-lg p-3 px-5">
               <i class="fa-regular fa-pen-to-square me-3"></i>
               Create Your First Note
             </RouterLink>
@@ -20,14 +20,14 @@
         <!-- notes available -->
         <div v-else>
           <div class="d-flex justify-content-end mb-3">
-            <RouterLink to="/new" class="btn btn-secondary px-3">
+            <RouterLink to="/new" data-test="button-new" class="btn btn-secondary px-3">
               <i class="fa-regular fa-pen-to-square me-2"></i>
               New Note
             </RouterLink>
           </div>
 
           <!-- lista de notas -->
-          <NotesCard v-for="note in notes" :key="note.id" :note="note" @delete="openDeleteModal" />
+          <NotesCard v-for="note in notes" :key="note.id" :note="note" @delete="openDeleteModal"  data-test="note-card" />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="modal-backdrop-custom">
-    <div class="card delete-card shadow-lg">
+    <div class="card delete-card shadow-lg" data-test="delete-card">
       <div class="text-center">
         <i class="fa-solid fa-triangle-exclamation text-warning fs-1 mb-3"></i>
         <h5 class="text-info">{{ note.title }}</h5>
@@ -13,7 +13,7 @@
         <button @click="$emit('close')" class="btn btn-primary px-4 mx-2">
           No
         </button>
-        <button @click="confirmDelete" class="btn btn-danger px-4 mx-2">
+        <button @click="confirmDelete" data-test="confirm-button" class="btn btn-danger px-4 mx-2">
           Yes
         </button>
       </div>

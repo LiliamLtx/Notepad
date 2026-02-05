@@ -21,7 +21,7 @@
           {{ user?.name }}
         </span>
 
-        <button @click="logout" class="btn btn-outline-secondary px-3">
+        <button @click="logout" data-test="botton-logout" class="btn btn-outline-secondary px-3">
           Logout
           <i class="fa-solid fa-arrow-right-from-bracket ms-2"></i>
         </button>

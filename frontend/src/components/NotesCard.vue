@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col">
-      <div class="card p-4">
+      <div class="card p-4" v-bind="$attrs">
         <div class="row">
           <div class="col">
             <h4 class="text-info">{{ note.title }}</h4>
@@ -13,11 +13,11 @@
           </div>
 
           <div class="col text-end">
-            <button class="btn btn-outline-secondary btn-sm mx-1" @click="onEdit">
+            <button data-test="button-edit" class="btn btn-outline-secondary btn-sm mx-1" @click="onEdit">
               <i class="fa-regular fa-pen-to-square"></i>
             </button>
 
-            <button class="btn btn-outline-danger btn-sm mx-1" @click="$emit('delete', note)">
+            <button class="btn btn-outline-danger btn-sm mx-1" data-test="button-delete" @click="$emit('delete', note)">
               Delete
             </button>
           </div>
@@ -67,5 +67,9 @@ function onEdit() {
     params: { id: props.note.id }
   })
 }
+
+defineOptions({
+  inheritAttrs: false
+})
 
 </script>

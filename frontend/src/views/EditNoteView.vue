@@ -28,6 +28,7 @@
                 <input
                   type="text"
                   class="form-control bg-primary text-white"
+                  data-test="noteTitle"
                   v-model="form.title"
                 />
                 <div v-if="errors.title" class="text-danger">
@@ -40,6 +41,7 @@
                 <textarea
                   class="form-control bg-primary text-white"
                   rows="5"
+                  data-test="noteText"
                   v-model="form.text"
                 ></textarea>
                 <div v-if="errors.text" class="text-danger">
@@ -60,7 +62,7 @@
                 <i class="fa-solid fa-ban me-2"></i>Cancel
               </button>
 
-              <button type="submit" class="btn btn-secondary px-5 ms-2">
+              <button type="submit" data-test="button-update" class="btn btn-secondary px-5 ms-2">
                 <i class="fa-regular fa-circle-check me-2"></i>Update
               </button>
             </div>
@@ -76,7 +78,6 @@
 import { reactive, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import api from '@/services/api'
-import TopBar from '@/components/TopBar.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -88,7 +89,10 @@ const form = reactive({
   text: ''
 })
 
-const errors = reactive({})
+const errors = reactive({
+  title: null,
+  text: null
+})
 
 function goHome() {
   router.push('/home')
@@ -107,6 +111,20 @@ onMounted(async () => {
 async function update() {
   errors.title = null
   errors.text = null
+
+  let hasError = false
+
+  if (!form.title.trim()) {
+    errors.title = 'Título é obrigatório'
+    hasError = true
+  }
+
+  if (!form.text.trim()) {
+    errors.text = 'Texto é obrigatório'
+    hasError = true
+  }
+
+  if (hasError) return
 
   try {
     await api.put(`/notes/${noteId}`, {
