@@ -41,7 +41,12 @@ class NoteController extends Controller
             $request->title,
             $request->text
         );
-        
+
+        if (empty($title) || empty($text)) {
+            throw new \InvalidArgumentException(
+                'Título e texto são obrigatórios'
+            );
+        }
 
         return response()->json($note, 201);
     }
@@ -52,10 +57,10 @@ class NoteController extends Controller
     public function show(string $id)
     {
         $note = Note::where('id', $id)
-        ->where('user_id', auth()->id())
-        ->firstOrFail();
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
 
-        return response()->json($note,200);
+        return response()->json($note, 200);
     }
 
     /**
@@ -72,6 +77,7 @@ class NoteController extends Controller
             'text' => $request->text,
         ]);
 
+
         return response()->json($note, 200);
     }
 
@@ -86,6 +92,6 @@ class NoteController extends Controller
 
         $note->delete();
 
-        return response()->json(['message' => 'Nota excluída'],200);
+        return response()->json(['message' => 'Nota excluída'], 200);
     }
 }
