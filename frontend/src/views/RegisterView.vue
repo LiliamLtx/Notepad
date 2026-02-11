@@ -83,7 +83,7 @@ const cadastrar = async () => {
   loading.value = true
 
   try {
-    const response = await api.post('/cadastro', {
+    const response = await api.post('/register', {
       text_name: text_name.value,
       text_username: text_username.value,
       text_password: text_password.value
