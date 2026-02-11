@@ -19,8 +19,8 @@ const router = createRouter({
       meta: { guestOnly: true }
     },
     {
-      path: '/cadastro',
-      name: 'cadastro',
+      path: '/register',
+      name: 'register',
       component: RegisterView,
       meta: { guestOnly: true }
     },

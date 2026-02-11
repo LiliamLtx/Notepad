@@ -61,7 +61,7 @@ public function logout(Request $request)
 }
 
 
-   public function cadastro(Request $request)
+   public function register(Request $request)
    {
       $credentials = $request->validate(
          [
