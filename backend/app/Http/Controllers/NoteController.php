@@ -10,7 +10,7 @@ use App\Services\NoteService;
 class NoteController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Index traz as notas do usuario.
      */
     public function index(Request $request)
     {
@@ -26,14 +26,19 @@ class NoteController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store cria uma nova nota do usuario.
      */
     public function store(Request $request, NoteService $service)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'text' => 'required|string',
-        ]);
+        ], 
+        [
+            'title.required' => 'Titulo é obrigatorio',
+            'text.required' => 'Texto da nota é obrigatorio'
+        ]
+        );
 
         //service para criar notas com titulo unico
         $note = $service->criarNota(
@@ -42,11 +47,6 @@ class NoteController extends Controller
             $request->text
         );
 
-        if (empty($title) || empty($text)) {
-            throw new \InvalidArgumentException(
-                'Título e texto são obrigatórios'
-            );
-        }
 
         return response()->json($note, 201);
     }
@@ -64,7 +64,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza uma nota especifica
      */
     public function update(Request $request, string $id)
     {
@@ -82,7 +82,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * SoftDelete em uma nota especifica
      */
     public function destroy(Request $request, $id)
     {

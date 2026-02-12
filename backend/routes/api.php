@@ -8,16 +8,23 @@ use Illuminate\Http\Request;
 Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
     return $request->user();
 });
+    
+//Auth routes
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::get('/logout', [AuthController::class, 'logout']);
-
-
+//Crud routes
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/notes', [NoteController::class, 'index']);
-    Route::get('/notes/{id}', [NoteController::class, 'show']);
+    //Create NewNote
     Route::post('/notes', [NoteController::class, 'store']);
-    Route::put('/notes/{id}', [NoteController::class, 'update']);
+    //Read
+    Route::get('/notes/{id}', [NoteController::class, 'show']);
+    Route::get('/notes', [NoteController::class, 'index']);
+    //Update Note
+    Route::put('/notes/{id}', [NoteController::class, 'update']);  
+    //Delete Note
     Route::delete('/notes/{id}', [NoteController::class, 'destroy']);
+
+    //logout
+    Route::post('/logout', [AuthController::class, 'logout']);
 });

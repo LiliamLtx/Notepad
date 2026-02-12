@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+use function Laravel\Prompts\error;
 
 class AuthController extends Controller
 {
@@ -46,7 +48,6 @@ class AuthController extends Controller
       return response()->json([
         'message' => 'Login realizado com sucesso',
         'token' => $token,
-        'user' => $user
     ]);
    }
 
