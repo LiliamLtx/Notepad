@@ -34,9 +34,12 @@ O **Docker é utilizado exclusivamente para subir o banco de dados PostgreSQL**,
 
 ## Telas
 ### 01- Login
-<img width="1920" height="958" alt="image" src="https://github.com/user-attachments/assets/4bfca36e-a5db-4cc1-a320-1ac3fd0c4593" />
-### 02- Login
+<img width="1920" height="958" alt="image" src="https://github.com/user-attachments/assets/94727242-69fd-4a40-9e06-2f3e06dd9cc4" />
+### 02- Cadastro
 <img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/7cb6e15e-6855-425b-8b27-eb62c79db954" />
+### 02- Tela incial (sem notas)
+<img width="1920" height="940" alt="image" src="https://github.com/user-attachments/assets/5dcd68e0-6080-4482-9e0b-63c4791965a2" />
+
 
 
 
