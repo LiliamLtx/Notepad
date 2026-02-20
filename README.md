@@ -22,6 +22,7 @@ O **Docker é utilizado exclusivamente para subir o banco de dados PostgreSQL**,
 ## 🚀 Funcionalidades
 
 - Cadastro e login de usuários
+
 - Autenticação via API com token
 - Criação, listagem, edição e exclusão de notas
 - Soft delete de notas
@@ -30,6 +31,14 @@ O **Docker é utilizado exclusivamente para subir o banco de dados PostgreSQL**,
 - Interface responsiva
 
 ---
+
+## Telas
+### 01- Login
+<img width="1920" height="958" alt="image" src="https://github.com/user-attachments/assets/4bfca36e-a5db-4cc1-a320-1ac3fd0c4593" />
+### 02- Login
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/7cb6e15e-6855-425b-8b27-eb62c79db954" />
+
+
 
 ## 📦 Pré-requisitos
 
