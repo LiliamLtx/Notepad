@@ -34,11 +34,38 @@ O **Docker é utilizado exclusivamente para subir o banco de dados PostgreSQL**,
 
 ## Telas
 ### 01- Login
-<img width="1920" height="958" alt="image" src="https://github.com/user-attachments/assets/94727242-69fd-4a40-9e06-2f3e06dd9cc4" />
+
+<img width="1920" height="958" alt="image" src="https://github.com/user-attachments/assets/47fbd227-1d81-4704-a9cf-43b3eaa827c8" />
+<br>
+
 ### 02- Cadastro
-<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/7cb6e15e-6855-425b-8b27-eb62c79db954" />
-### 02- Tela incial (sem notas)
-<img width="1920" height="940" alt="image" src="https://github.com/user-attachments/assets/5dcd68e0-6080-4482-9e0b-63c4791965a2" />
+
+<img width="1920" height="952" alt="image" src="https://github.com/user-attachments/assets/63d5137f-1cce-499d-b672-7fb0aa85edea" />
+<br>
+
+### 03- Tela incial (sem notas)
+
+<img width="1920" height="940" alt="image" src="https://github.com/user-attachments/assets/b7e91287-c9e1-457b-8620-00654e51a24a" />
+<br>
+
+### 03.1 Tela inicial (com notas)
+
+<img width="1920" height="940" alt="image" src="https://github.com/user-attachments/assets/2881cc95-f10e-4794-a8d5-3c6071469c01" />
+
+
+### 04- Tela de criação de nota
+
+<img width="1920" height="940" alt="image" src="https://github.com/user-attachments/assets/dbcc7610-7551-4fec-99c3-d59409bef463" />
+<br>
+
+### 05- Tela de edição de nota
+
+<img width="1920" height="943" alt="image" src="https://github.com/user-attachments/assets/1e435564-81ac-4819-bc14-a914608f761c" />
+<br>
+
+### 06- Tela de exclusão de nota
+
+<img width="1920" height="945" alt="image" src="https://github.com/user-attachments/assets/3326c21a-f406-4587-a4eb-1a532a865cf7" />
 
 
 
