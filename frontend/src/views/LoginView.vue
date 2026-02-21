@@ -33,7 +33,7 @@
           <!-- Cadastro -->
           <div class="text-center mt-3">
             Não tem uma conta?
-            <router-link to="/cadastro" class="btn btn-link p-0">
+            <router-link to="/register" class="btn btn-link p-0">
               Cadastre-se
             </router-link>
           </div>

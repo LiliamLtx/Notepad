@@ -1,7 +1,7 @@
 describe('Login', () => {
     //Arrange
     beforeEach(() => {
-        cy.visit('/cadastro')
+        cy.visit('/register')
     })
 
     it('Realizar cadastro com sucesso', () => {
